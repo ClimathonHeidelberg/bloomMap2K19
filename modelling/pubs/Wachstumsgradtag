@@ -1,1 +1,4 @@
-
+Commonly used formula:
+GDD= (T_min+T_max)/2-T_thresh
+T_thresh= 10 °C
+T_max<= 30 °C
