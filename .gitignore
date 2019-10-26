@@ -1,3 +1,5 @@
 *.xcf
 *.swo
 *.swp
+*.pyc
+bloomhunt/*/migrations/*
