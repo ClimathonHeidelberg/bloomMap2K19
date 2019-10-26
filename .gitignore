@@ -3,3 +3,5 @@
 *.swp
 *.pyc
 bloomhunt/*/migrations/*
+*.sqlite3
+bloomhunt/env/

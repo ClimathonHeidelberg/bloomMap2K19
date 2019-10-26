@@ -2,6 +2,27 @@
 
 {% block content %}
 
-<p>You successfully identified your tree. It is a <b>{{ tree.name }}</b>
+<p>Congratulions, you are the first to report that this <b>{{ tree.name }}</b>
+tree is blooming.<p>
+
+<p>You may give it a name now</p>
+
+<form action="/mobile/addtree/" method="post">
+    {% csrf_token %}
+    <input type="text" name="name">
+    <input type="hidden" name="tree" value="{{ tree.name }}">
+    <input id="in_long" type="text" name="longitude">
+    <input id="in_lat" type="text" name="latitude">
+    <input type="submit" value="Name your tree">
+</form>
+
+    <script>
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var in_long = document.getElementById("in_long");
+        var in_lat = document.getElementById("in_lat");
+        in_long.value = position.coords.longitude;
+        in_lat.value = position.coords.latitude;
+    });
+    </script>
 
 {% endblock %}
