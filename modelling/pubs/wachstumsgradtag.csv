@@ -1,18 +1,18 @@
-Deutscher Name	Lateinischer Name	Wachstumsgradtage (Schwellenwert 10°C)min[WGT]	max[WGT]
-Hamamelis	Hamamelis spp. 	1
-Rotahorn	Acer rubrum 	1	27
-Forsythie	Forsythia	1	27
-Zuckerahorn	Acer saccharum 	1	27
-Spitzahorn	Acer platanoides 	30	50
-Esche	Fraxinus americana 	30	50
-Apfelbaum	Malus spp. 	50	80
-Gemeiner Gingster	Cytissus scoparius 	50	80
-Rosskastanie	Aesculus hippocastanum 	80	110
-Gemeiner Flieder	Syringa vulgaris 	80	110
-Robinie	Robinia pseudoacacia 	140	160
-Trompetenbaum	Catalpa speciosa 	250	330
-Liguster	Ligustrum spp. 	330	400
-Holunder	Sambucus canadensis 	330	400
-Blutweiderich	Lythrum salicaria 	400	450
-Essigbaum	Rhus typhina 	450	500
-Sommerflieder	Buddleia davidii 	550	650
+English,Deutsch,Latin,minGDD,maxGDD
+Witch-hazel ,Hamamelis,Hamamelis spp. ,1,1
+Red maple ,Rotahorn,Acer rubrum ,1,27
+Forsythia ,Forsythie,Forsythia,1,27
+Sugar maple ,Zuckerahorn,Acer saccharum ,1,27
+Norway maple ,Spitzahorn,Acer platanoides ,30,50
+White ash ,Esche,Fraxinus americana ,30,50
+Crabapple ,Apfelbaum,Malus spp. ,50,80
+Common Broom ,Gemeiner Gingster,Cytissus scoparius ,50,80
+Horsechestnut ,Rosskastanie,Aesculus hippocastanum ,80,110
+Common lilac ,Gemeiner Flieder,Syringa vulgaris ,80,110
+Black locust ,Robinie,Robinia pseudoacacia ,140,160
+Catalpa ,Trompetenbaum,Catalpa speciosa ,250,330
+Privet ,Liguster,Ligustrum spp. ,330,400
+Elderberry ,Holunder,Sambucus canadensis ,330,400
+Purple loosestrife ,Blutweiderich,Lythrum salicaria ,400,450
+Sumac ,Essigbaum,Rhus typhina ,450,500
+Butterfly bush,Sommerflieder,Buddleia davidii ,550,650
