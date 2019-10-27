@@ -1,0 +1,172 @@
+{% load static %}
+
+<html>
+
+    <head>
+
+        <link rel="stylesheet" href="{% static 'map/index.css' %}">
+         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+        <script src="{% static 'map/mapsync.js' %}"></script>
+    </head>
+
+<body>
+
+<div id="map1"></div>
+<div id="map2"></div>
+
+<div style="pointer-events: none; position: absolute; top: 30px; right: 40px; z-index: 1000">2019</div>
+<div style="pointer-events: none; position: absolute; top: 310px; right: 40px; z-index: 1001">2029</div>
+
+
+<div class="slidecontainer">
+<input type="range" min="1" max="365" value="180" class="slider" id="myRange"
+    oninput="updateMap(this.value)">
+</div>
+<p id="p_date"></p>
+
+<script>
+
+var p_date = document.getElementById("p_date");
+
+var map1 = L.map('map1').setView([49.4093524, 8.6931736], 15);
+var map2 = L.map('map2').setView([49.4093524, 8.6931736], 15);
+
+map1.sync(map2);
+map2.sync(map1);
+
+var tile = "https://c.tile.openstreetmap.org/{z}/{x}/{y}.png "
+
+var layer1 = L.tileLayer(tile, {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map1);
+
+var layer2 = L.tileLayer(tile, {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map2);
+
+//var layer1 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+//	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+//	maxZoom: 18,
+//	id: 'mapbox.streets',
+//	accessToken: 'pk.eyJ1IjoicG9zdGZsYXYiLCJhIjoiY2syN29xZHVpMnlzcDNtbXZkN2tlYWdhaSJ9.Th5tmsyOlPKoogGrOQrMNA'
+//});
+
+//var layer2 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+//	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+//	maxZoom: 18,
+//	id: 'mapbox.hiking',
+//	accessToken: 'pk.eyJ1IjoicG9zdGZsYXYiLCJhIjoiY2syN29xZHVpMnlzcDNtbXZkN2tlYWdhaSJ9.Th5tmsyOlPKoogGrOQrMNA'
+//});
+
+layer1.addTo(map1);
+layer2.addTo(map2);
+
+function mk_not_bloom_icon(label) {
+    return new L.DivIcon({
+        className: 'no-bloom-icon',
+        html: '<img class="no-bloom-icon" src="{% static 'map/tree_not_blooming.png' %}"/>' +
+              '<span>' + label + '</span>',
+        iconAnchor: [15, 30]
+    });
+}
+
+function mk_bloom_icon(label) {
+    return new L.DivIcon({
+        className: 'bloom-icon',
+        html: '<img class="no-bloom-icon" src="{% static 'map/tree_blooming.png' %}"/>' +
+              '<span>' + label + '</span>',
+        iconAnchor: [15, 30]
+    });
+
+}
+
+//var not_bloom_icon = L.icon({
+//	iconUrl: 'tree_not_blooming.png',
+//
+//	iconSize:     [40, 40], // size of the icon
+//	shadowSize:   [0, 0], // size of the shadow
+//	iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
+//	shadowAnchor: [4, 62],  // the same for the shadow
+//	popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+//});
+
+//var bloom_icon = L.icon({
+//	iconUrl: 'tree_blooming.png',
+//
+//	iconSize:     [40, 40], // size of the icon
+//	shadowSize:   [0, 0], // size of the shadow
+//	iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
+//	shadowAnchor: [4, 62],  // the same for the shadow
+//	popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+//});
+
+
+class Tree {
+    constructor(name, bloom_start, xcoord, ycoord) {
+        this.name = name;
+        this.bloom_start = bloom_start;
+        this.marker = L.marker([xcoord, ycoord],
+            {icon: mk_not_bloom_icon(this.name)});
+        this.blooming = false;
+    }
+    update(dayno) {
+        if ((dayno < this.bloom_start || dayno >= this.bloom_start + 14)
+                && this.blooming) {
+            this.marker.setIcon(mk_not_bloom_icon(this.name));
+            this.blooming = false;
+        } else if (dayno >= this.bloom_start
+                   && dayno < this.bloom_start + 14
+                   && !this.blooming) {
+            this.marker.setIcon(mk_bloom_icon(this.name));
+            this.blooming = true;
+        }
+    }
+}
+
+var treesFromJSON = {{ trees|safe }}["trees"];
+var trees_1 = [];
+
+for (var i = 0; i < treesFromJSON.length; i++) {
+    let raw = treesFromJSON[i];
+    let tree = new Tree(raw["name"], raw["bloom_start"],
+                        raw["latitude"], raw["longitude"]);
+    trees_1.push(tree);
+}
+
+var a_tree = new Tree("Fritz", 120, 49.4093524, 8.6931736);
+var a_tree2 = new Tree("Hans", 100, 45.02, 8.6931736);
+var a_tree3 = new Tree("Hans", 100, 49.02, 8.69317);
+
+var trees_2 = [a_tree, a_tree2, a_tree3];
+
+function updateMap(value) {
+    for (var i = 0; i < trees_1.length; i++) {
+        trees_1[i].update(value);
+    }
+    for (var i = 0; i < trees_2.length; i++) {
+        trees_2[i].update(value);
+    }
+    p_date.innerHTML = "Date: " + dateFromDay(value);
+}
+
+function dateFromDay(dayno) {
+    var date = new Date(2019, 0); // initialize a date in `year-01-01`
+    var date2 = new Date(date.setDate(dayno));
+    return date2.getMonth() + 1 + "-" + date2.getDate();
+}
+
+var cities1 = L.layerGroup(trees_1.map(t => t.marker));
+var cities2 = L.layerGroup(trees_2.map(t => t.marker));
+cities1.addTo(map1);
+cities2.addTo(map2);
+
+</script>
+
+</body>
+
+</html>
