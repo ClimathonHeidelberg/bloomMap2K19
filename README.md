@@ -2,7 +2,7 @@
   <img src="https://github.com/ClimathonHeidelberg/bloomMap2K19/blob/master/design/logo.png">
 </p>
 
-## SpringUp - Providing you with action against climate change
+## Spring Up - Providing you with action against climate change
 
 We motivate you, the individual, to "spring up" and to get involved in helping understand how climate change is happening your backyard. Our WebApp allows you to collect data of blooming trees in your neighborhood through fun challenges. The collected data allows timely decision making.
 
