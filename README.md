@@ -4,13 +4,11 @@
 
 ## Spring Up - Providing you with action against climate change
 
-We motivate you, the individual, to "spring up" and to get involved in helping understand how climate change is happening your backyard. Our WebApp allows you to collect data of blooming trees in your neighborhood through fun challenges. The collected data allows timely decision making.
+We motivate you, the individual, to "spring up" and to get involved in helping understand how climate change is happening in your backyard. Our WebApp allows you to collect data of blooming trees in your neighborhood through fun challenges. The collected data allows timely decision making.
 
-### Context
+#### Context
 
 According to a 2019 press release from Deutscher Wetterdienst (DWD), there are currently 1088 volunteer "Beobachter" or "watchers" who collect bloom data; The method for data acquisition was only recently digitalized in 2014 but lacks a user-friendly and engaging design. The solution is not scalable, especially not internationally, where other countries may not have the infrastructure and manpower.
-
-### Description
 
 #### What is the main idea?
 
