@@ -33,5 +33,5 @@ Our primary target group is school classes, but our solution is fit for many gro
 
 ### Team 
 
-Christian Merten, Daniel Phillip, Denisa Gombalova, Fahad Jahangir, Zhendong Yuan, Marisa God, Tornike Tsereteli, Utz A.-Thoreeihe
+Christian Merten, Daniel Phillip, Denisa Gombalova, Fahad Jahangir, Zhendong Yuan, Marisa God, Tornike Tsereteli, Utz A.-Thorweihe
 
