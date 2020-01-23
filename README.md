@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/ClimathonHeidelberg/bloomMap2K19/blob/master/design/logo.png">
+  <img src="https://github.com/ClimathonHeidelberg/bloomMap2K19/blob/master/design/Mockup.gif">
 </p>
 
 ## Spring Up - Providing you with action against climate change
