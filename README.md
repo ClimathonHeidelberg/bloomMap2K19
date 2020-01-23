@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/ClimathonHeidelberg/bloomMap2K19/blob/master/design/Mockup.gif">
+  <img src="https://github.com/ClimathonHeidelberg/bloomMap2K19/blob/master/design/logo.png">
 </p>
 
 ## Spring Up - Providing you with action against climate change
@@ -19,7 +19,7 @@ We implemented a WebApp, which allows a community-driven and internationally sca
 A user is challenged to take a picture of a blooming tree in their community. We predict blooming species of trees on a local level based on historical data. When the user uploads an image of a blooming tree, our Machine Learning model analyzes the picture to classify if the tree is the correct species and if it is in fact blooming. Once verified, the user is eligible for prizes (e.g. coupons, stickers in the App, etc.).
 
 <p align="center">
-  <img src="https://github.com/ClimathonHeidelberg/bloomMap2K19/blob/master/design/app.png" height="400">
+  <img src="https://github.com/ClimathonHeidelberg/bloomMap2K19/blob/master/design/Mockup.gif" height="400">
 </p>
 
 #### How are we different?
